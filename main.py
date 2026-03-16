@@ -1,9 +1,10 @@
 import pygame
 from constants import *
-from logger import log_state
+from logger import log_state, log_event
 from player import *
 from asteroidfield import AsteroidField
 from asteroid import Asteroid
+from circleshape import CircleShape
 
 def main():
     
@@ -32,6 +33,8 @@ def main():
 
         screen.fill("black")
         updatable.update(dt)
+        for _ in asteroids:
+            _.collides_with(player)
         for _ in drawable:
             _.draw(screen)
         pygame.display.flip()
@@ -39,7 +42,5 @@ def main():
         dt = clock.tick(60) / 1000
         
         
-
-
 if __name__ == "__main__":
     main()
